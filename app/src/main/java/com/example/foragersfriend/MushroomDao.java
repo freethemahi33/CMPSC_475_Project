@@ -40,7 +40,7 @@ public interface MushroomDao {
     void deleteById(int id);
 
     @Delete
-    void deleteAll();
+    void deleteAll(Mushroom ... mushrooms);
 
     @Update
     void update(Mushroom ... mushrooms);
