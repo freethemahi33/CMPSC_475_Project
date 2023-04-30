@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="settings_main">
+    <PreferenceCategory
+        android:title="General Settings">
+        <SwitchPreferenceCompat
+            android:key="dark_mode"
+            android:title="Dark Mode"
+            android:summary="Enable dark mode"
+            android:defaultValue="false" />
+        <SwitchPreferenceCompat
+            android:key="notifications"
+            android:title="Notifications"
+            android:summary="Enable notifications"
+            android:defaultValue="false"/>
+        <PreferenceScreen
+            android:key="settings_user_info"
+            android:title="User Information"
+            android:fragment="com.example.foragersfriend.SettingsActivity$UserInfoFragment"
+            android:summary="User Information">
+        </PreferenceScreen>
+
+        <ListPreference
+            android:key="language"
+            android:title="Language"
+            android:summary="Select your language"
+            android:entries="@array/language_options"
+            android:entryValues="@array/language_values"
+            android:defaultValue="en"/>
+        <SwitchPreference
+            android:key="question"
+            android:title="Will Jason fail this class?"
+            android:summary="Yes or no"
+            android:defaultValue="true"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="About">
+        <Preference
+            android:key="version"
+            android:title="Version"
+            android:summary="1.0.0"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
