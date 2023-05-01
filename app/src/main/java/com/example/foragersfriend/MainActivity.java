@@ -8,11 +8,14 @@ import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Camera;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 
 import com.example.foragersfriend.NavFragments.HomeFragment;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new HomeFragment());
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             Log.d(TAG, "onCreate: Switch");

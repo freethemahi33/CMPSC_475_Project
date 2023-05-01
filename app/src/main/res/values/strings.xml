@@ -10,4 +10,12 @@
     <string name="mushroom_list_fragment">Mushroom List Fragment</string>
     <string name="mushroom_add_fragment">Mushroom Add Fragment</string>
     <string name="home_fragment">Home Fragment</string>
+    <string name="name">Enter Name</string>
+    <string name="date">Enter a date</string>
+    <string name="location">Location</string>
+    <string name="season">Season</string>
+    <string name="add_mushroom_form">Add Mushroom Form</string>
+    <string name="toxicity">Toxicity</string>
+    <string name="type">Type</string>
+    <string name="add_mushroom">Add Mushroom</string>
 </resources>
