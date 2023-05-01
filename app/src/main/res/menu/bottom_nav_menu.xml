@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/bottom_nav_home"
+        android:id="@+id/homeFragment"
+        android:title="@string/nav_home" />
+    <item
+        android:icon="@drawable/bottom_nav_add"
+        android:id="@+id/addMushroomFragment"
+        android:title="@string/nav_add_mushroom" />
+    <item
+        android:icon="@drawable/bottom_nav_list"
+        android:id="@+id/mushroomListFragment"
+        android:title="@string/nav_mushroom_list" />
+</menu>

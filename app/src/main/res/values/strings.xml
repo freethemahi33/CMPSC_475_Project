@@ -2,4 +2,12 @@
     <string name="settings">Settings</string>
     <string name="logo">logo</string>
     <string name="app_name">Forager\'s Friend</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_add_mushroom">Add Mushroom</string>
+    <string name="nav_mushroom_list">Mushroom List</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mushroom_list_fragment">Mushroom List Fragment</string>
+    <string name="mushroom_add_fragment">Mushroom Add Fragment</string>
+    <string name="home_fragment">Home Fragment</string>
 </resources>

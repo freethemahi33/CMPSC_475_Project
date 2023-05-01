@@ -7,5 +7,20 @@
             android:title="Name"
             android:summary="Enter your name"
             android:defaultValue=""/>
+        <EditTextPreference
+            android:key="email"
+            android:title="Email"
+            android:summary="Enter your email"
+            android:defaultValue=""/>
+        <EditTextPreference
+            android:key="phone"
+            android:title="Phone"
+            android:summary="Enter your phone number"
+            android:defaultValue=""/>
+        <EditTextPreference
+            android:key="address"
+            android:title="Address"
+            android:summary="Enter your address"
+            android:defaultValue=""/>
     </PreferenceCategory>
 </PreferenceScreen>
