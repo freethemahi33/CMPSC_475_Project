@@ -8,15 +8,19 @@ import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Camera;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.View;
 
-import com.example.foragersfriend.BottomNavFragments.HomeFragment;
-import com.example.foragersfriend.BottomNavFragments.MushroomAddFragment;
-import com.example.foragersfriend.BottomNavFragments.MushroomListFragment;
+import com.example.foragersfriend.NavFragments.HomeFragment;
+import com.example.foragersfriend.NavFragments.MushroomAddFragment;
+import com.example.foragersfriend.NavFragments.MushroomListFragment;
 import com.example.foragersfriend.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,16 +36,21 @@ public class MainActivity extends AppCompatActivity {
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+            Log.d(TAG, "onCreate: Switch");
             switch (item.getItemId()) {
                 case R.id.homeFragment:
                     replaceFragment(new HomeFragment());
+                    Log.d(TAG, "onCreate: Home");
                     break;
                 case R.id.addMushroomFragment:
                     replaceFragment(new MushroomAddFragment());
+                    Log.d(TAG, "onCreate: Add");
                     break;
                 case R.id.mushroomListFragment:
                     replaceFragment(new MushroomListFragment());
+                    Log.d(TAG, "onCreate: List");
                     break;
             }
             return true;
