@@ -18,4 +18,10 @@
     <string name="toxicity">Toxicity</string>
     <string name="type">Type</string>
     <string name="add_mushroom">Add Mushroom</string>
+    <string name="mushroom_detail_name_header">Mushroom Name:</string>
+    <string name="mushroom_detail_description_header">Mushroom Description:</string>
+    <string name="mushroom_detail_last_seen_header">Last Seen:</string>
+    <string name="mushroom_detail_season_header">Season:</string>
+    <string name="mushroom_detail_toxicity_header">Toxicity:</string>
+    <string name="mushroom_detail_type_header">Type:</string>
 </resources>

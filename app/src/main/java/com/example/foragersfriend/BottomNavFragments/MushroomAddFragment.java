@@ -59,23 +59,20 @@ import android.hardware.camera2.TotalCaptureResult;
  */
 public class MushroomAddFragment extends Fragment implements TextureView.SurfaceTextureListener {
 
-    private Button btnCapture;
     private TextureView textureView;
 
     //Check state orientation of output image
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
-    static{
+    static {
         ORIENTATIONS.append(Surface.ROTATION_0,90);
         ORIENTATIONS.append(Surface.ROTATION_90,0);
         ORIENTATIONS.append(Surface.ROTATION_180,270);
         ORIENTATIONS.append(Surface.ROTATION_270,180);
     }
 
-    private String cameraId;
     private CameraDevice cameraDevice;
     private CameraCaptureSession cameraCaptureSessions;
     private CaptureRequest.Builder captureRequestBuilder;
-    private Size imageDimension;
     private ImageReader imageReader;
 
     private static final int REQUEST_STORAGE_PERMISSION = 2;
@@ -102,7 +99,6 @@ public class MushroomAddFragment extends Fragment implements TextureView.Surface
         @Override
         public void onError(@NonNull CameraDevice cameraDevice, int i) {
             cameraDevice.close();
-            cameraDevice=null;
         }
     };
 
@@ -155,7 +151,7 @@ public class MushroomAddFragment extends Fragment implements TextureView.Surface
         textureView = rootView.findViewById(R.id.textureView);
         assert textureView != null;
         textureView.setSurfaceTextureListener(this);
-        btnCapture = rootView.findViewById(R.id.btnCapture);
+        Button btnCapture = rootView.findViewById(R.id.btnCapture);
         btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -321,11 +317,11 @@ public class MushroomAddFragment extends Fragment implements TextureView.Surface
     private void openCamera() {
         CameraManager manager = (CameraManager)requireActivity().getSystemService(Context.CAMERA_SERVICE);
         try{
-            cameraId = manager.getCameraIdList()[0];
+            String cameraId = manager.getCameraIdList()[0];
             CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
             StreamConfigurationMap map = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
             assert map != null;
-            imageDimension = map.getOutputSizes(SurfaceTexture.class)[0];
+            Size imageDimension = map.getOutputSizes(SurfaceTexture.class)[0];
             //Check realtime permission if run higher API 23
             if(ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
             {

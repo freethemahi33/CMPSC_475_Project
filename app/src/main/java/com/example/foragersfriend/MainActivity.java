@@ -18,9 +18,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 
-import com.example.foragersfriend.NavFragments.HomeFragment;
-import com.example.foragersfriend.NavFragments.MushroomAddFragment;
-import com.example.foragersfriend.NavFragments.MushroomListFragment;
+import com.example.foragersfriend.BottomNavFragments.HomeFragment;
+import com.example.foragersfriend.BottomNavFragments.MushroomAddFragment;
+import com.example.foragersfriend.BottomNavFragments.MushroomListFragment;
 import com.example.foragersfriend.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new HomeFragment());
+        replaceFragment(new com.example.foragersfriend.BottomNavFragments.HomeFragment());
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
