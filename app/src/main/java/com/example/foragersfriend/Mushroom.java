@@ -35,4 +35,21 @@ public class Mushroom {
         this.toxicity = toxicity;
         this.type = type;
     }
+
+    public Mushroom(String name, String location, String date, String season, boolean isToxic, String type) {
+        this.id = 0;
+        this.name = name;
+        this.description = "";
+        this.image = "";
+        this.location = location;
+        this.season = season;
+        this.toxicity = isToxic ? "Toxic" : "Non-Toxic";
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Mushroom{name='" + name + "', location='" + location + "', season='" + season + "', isToxic=" + toxicity + ", type='" + type + "'}";
+    }
+
 }

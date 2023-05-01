@@ -74,4 +74,6 @@ public class MushroomListFragment extends Fragment {
         // set up the RecyclerView
         return view;
     }
+
+
 }
