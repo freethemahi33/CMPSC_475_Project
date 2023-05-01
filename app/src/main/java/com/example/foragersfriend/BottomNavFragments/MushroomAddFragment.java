@@ -1,27 +1,21 @@
-package com.example.foragersfriend.NavFragments;
+package com.example.foragersfriend.BottomNavFragments;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.foragersfriend.MushroomRVListItem;
-import com.example.foragersfriend.MushroomViewAdapter;
 import com.example.foragersfriend.R;
-
-import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MushroomListFragment#newInstance} factory method to
+ * Use the {@link MushroomAddFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MushroomListFragment extends Fragment {
+public class MushroomAddFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +26,7 @@ public class MushroomListFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public MushroomListFragment() {
+    public MushroomAddFragment() {
         // Required empty public constructor
     }
 
@@ -42,11 +36,11 @@ public class MushroomListFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MushroomListFragment.
+     * @return A new instance of fragment MushroomAddFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MushroomListFragment newInstance(String param1, String param2) {
-        MushroomListFragment fragment = new MushroomListFragment();
+    public static MushroomAddFragment newInstance(String param1, String param2) {
+        MushroomAddFragment fragment = new MushroomAddFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,12 +60,7 @@ public class MushroomListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_mushroom_list, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new MushroomViewAdapter(MushroomRVListItem.getDummyList()));
-        // set up the RecyclerView
-        return view;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_mushroom_add, container, false);
     }
 }
