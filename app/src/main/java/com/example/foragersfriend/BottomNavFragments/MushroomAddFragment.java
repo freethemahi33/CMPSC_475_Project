@@ -1,5 +1,7 @@
 package com.example.foragersfriend.BottomNavFragments;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,23 +13,34 @@ import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foragersfriend.MushroomDatabase;
 import com.example.foragersfriend.CameraActivity;
+import com.example.foragersfriend.Mushroom;
 import com.example.foragersfriend.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.Task;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,8 +48,33 @@ import com.google.android.gms.tasks.Task;
  */
 public class MushroomAddFragment extends Fragment {
 
+    private final ExecutorService executorService = Executors.newFixedThreadPool(8);
+
+    private String name;
+    private String location;
+    private String date;
+    private String description;
+    private String type;
+    private String season;
+    private String toxicity;
+    private byte[] imageBytes;
+
     public MushroomAddFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG, "onSaveInstanceState: called");
+        outState.putString("name", ((EditText) requireActivity().findViewById(R.id.mushroom_name_edit_text)).getText().toString());
+        outState.putString("location", ((EditText) requireActivity().findViewById(R.id.mushroom_location_edit_text)).getText().toString());
+        outState.putString("date", ((EditText) requireActivity().findViewById(R.id.mushroom_date_edit_text)).getText().toString());
+        outState.putString("description", ((EditText) requireActivity().findViewById(R.id.mushroom_description_edit_text)).getText().toString());
+        outState.putString("type", ((EditText) requireActivity().findViewById(R.id.mushroom_type_edit_text)).getText().toString());
+        outState.putString("season", ((RadioButton) requireActivity().findViewById(((RadioGroup) requireActivity().findViewById(R.id.radio_group_season)).getCheckedRadioButtonId())).getText().toString());
+        outState.putString("toxicity", ((CheckBox) requireActivity().findViewById(((CheckBox) requireActivity().findViewById(R.id.toxicity_check_box)).getId())).getText().toString());
+        outState.putByteArray("imageBytes", imageBytes);
     }
 
     ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
@@ -46,7 +84,7 @@ public class MushroomAddFragment extends Fragment {
                     // There are no request codes
                     Intent data = result.getData();
                     if (data != null) {
-                        byte[] imageBytes = (byte[]) data.getExtras().get("bytes");
+                        imageBytes = (byte[]) data.getExtras().get("bytes");
                         if (imageBytes != null) {
                             Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
                             ImageView imageView = requireActivity().findViewById(R.id.imageView);
@@ -65,14 +103,44 @@ public class MushroomAddFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: MushroomAddFragment" + " " + savedInstanceState);
+        if (savedInstanceState != null) {
+            name = savedInstanceState.getString("name");
+            location = savedInstanceState.getString("location");
+            date = savedInstanceState.getString("date");
+            description = savedInstanceState.getString("description");
+            type = savedInstanceState.getString("type");
+            season = savedInstanceState.getString("season");
+            toxicity = savedInstanceState.getString("toxicity");
+            imageBytes = savedInstanceState.getByteArray("imageBytes");
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_mushroom_add, container, false);
 
+        EditText nameEditText = rootView.findViewById(R.id.mushroom_name_edit_text);
+        EditText dateEditText = rootView.findViewById(R.id.mushroom_date_edit_text);
+        EditText descriptionEditText = rootView.findViewById(R.id.mushroom_description_edit_text);
+        RadioGroup seasonRadioGroup = rootView.findViewById(R.id.radio_group_season);
+        CheckBox toxicityCheckBox = rootView.findViewById(R.id.toxicity_check_box);
+        EditText typeEditText = rootView.findViewById(R.id.mushroom_type_edit_text);
+        Button addButton = rootView.findViewById(R.id.add_mushroom_button);
+
+        nameEditText.setText(name);
+        dateEditText.setText(date);
+        descriptionEditText.setText(description);
+        typeEditText.setText(type);
+        if (season != null) {
+            RadioButton radioButton = rootView.findViewWithTag(season);
+            radioButton.setChecked(true);
+        }
+        if (toxicity != null) {
+            CheckBox checkBox = rootView.findViewWithTag(toxicity);
+            checkBox.setChecked(true);
+        }
 
         Button button = rootView.findViewById(R.id.btnCapture);
         button.setOnClickListener(view -> {
@@ -81,6 +149,49 @@ public class MushroomAddFragment extends Fragment {
         });
 
         getLastLocation();
+
+            addButton.setOnClickListener(v -> {
+                String name = nameEditText.getText().toString().trim();
+                EditText locationEditText = (EditText) rootView.findViewById(R.id.mushroom_location_edit_text);
+                String location = locationEditText.getText().toString().trim();
+                String date = dateEditText.getText().toString().trim();
+                RadioButton checkedRadioButton = rootView.findViewById(seasonRadioGroup.getCheckedRadioButtonId());
+                String season = checkedRadioButton != null ? checkedRadioButton.getText().toString() : "";
+                boolean isToxic = toxicityCheckBox.isChecked();
+                String type = typeEditText.getText().toString().trim();
+                String description = descriptionEditText.getText().toString().trim();
+
+                if (name.isEmpty() || location.isEmpty() || date.isEmpty() || season.isEmpty() || type.isEmpty() || description.isEmpty() || imageBytes == null) {
+                    Toast.makeText(getContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Mushroom mushroom = new Mushroom(name, description, imageBytes, location, date, season, isToxic, type);
+
+                MushroomDatabase db = Room.databaseBuilder(requireContext(), MushroomDatabase.class, "my-db").allowMainThreadQueries().build();
+                // Create a call back for when the database is created and then insert the mushroom
+                executorService.execute(() -> {
+                    db.mushroomDao().insert(mushroom);
+                    Mushroom[] mushrooms = db.mushroomDao().getAll();
+
+                    for (Mushroom m : mushrooms) {
+                        Log.d("Database Contents", m.toString());
+                    }
+                    requireActivity().runOnUiThread(() -> {
+                        nameEditText.setText("");
+                        dateEditText.setText("");
+                        seasonRadioGroup.clearCheck();
+                        toxicityCheckBox.setChecked(false);
+                        typeEditText.setText("");
+                        descriptionEditText.setText("");
+                        imageBytes = null;
+                        ImageView imageView = requireActivity().findViewById(R.id.imageView);
+                        imageView.setImageResource(0);
+
+                        Toast.makeText(getContext(), "Mushroom added successfully", Toast.LENGTH_SHORT).show();
+                    });
+                });
+            });
 
 
         return rootView;

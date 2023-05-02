@@ -38,19 +38,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
-            Log.d(TAG, "onCreate: Switch");
             switch (item.getItemId()) {
                 case R.id.homeFragment:
                     replaceFragment(new HomeFragment());
-                    Log.d(TAG, "onCreate: Home");
                     break;
                 case R.id.addMushroomFragment:
                     replaceFragment(new MushroomAddFragment());
-                    Log.d(TAG, "onCreate: Add");
                     break;
                 case R.id.mushroomListFragment:
                     replaceFragment(new MushroomListFragment());
-                    Log.d(TAG, "onCreate: List");
                     break;
             }
             return true;

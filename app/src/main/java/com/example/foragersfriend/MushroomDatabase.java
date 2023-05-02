@@ -4,8 +4,8 @@ import androidx.room.RoomDatabase;
 import androidx.room.Database;
 
 @Database(entities = {Mushroom.class}, version = 1)
-abstract class AppDatabase extends RoomDatabase {
+public abstract class MushroomDatabase extends RoomDatabase {
 
-    abstract MushroomDao mushroomDao();
+    public abstract MushroomDao mushroomDao();
 
 }

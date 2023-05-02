@@ -18,6 +18,6 @@ public class MushroomList extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MushroomViewAdapter(MushroomRVListItem.getDummyList()));
+        recyclerView.setAdapter(new MushroomViewAdapter(MushroomRVListItem.getDummyList(getBaseContext())));
     }
 }

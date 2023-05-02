@@ -68,7 +68,7 @@ public class MushroomListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_mushroom_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new MushroomViewAdapter(MushroomRVListItem.getDummyList()));
+        recyclerView.setAdapter(new MushroomViewAdapter(MushroomRVListItem.getDummyList(getContext())));
         return view;
     }
 }

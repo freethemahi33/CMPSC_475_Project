@@ -11,14 +11,15 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/mushroom" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:id="@+id/mushroom_name"
-        android:text="Mushroom Name"
+        android:text="@string/mushroom_name"
         android:layout_toEndOf="@+id/mushroom_image" />
 
     <TextView
@@ -31,7 +32,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:layout_toEndOf="@+id/mushroom_image"
-        android:text="Last Seen: Location" />
+        android:text="@string/last_seen_location" />
 
     <Button
         android:id="@+id/mushroom_button"
@@ -42,7 +43,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Details"
+        android:text="@string/details"
         />
 
     <LinearLayout
