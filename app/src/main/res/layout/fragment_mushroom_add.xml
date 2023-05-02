@@ -11,6 +11,7 @@
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/add_mushroom_description_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_mushroom_form"
@@ -28,12 +29,21 @@
             android:autofillHints="Name" />
 
         <EditText
-            android:id="@+id/mushroom_location_edit_text"
+            android:id="@+id/mushroom_description_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:hint="@string/description"
+            android:autofillHints="Description" />
+
+        <EditText
+            android:id="@+id/mushroom_location_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
             android:hint="@string/location"
-            android:autofillHints="Location" />
+            android:autofillHints="Location"
+            android:enabled="false"/>
 
         <EditText
             android:id="@+id/mushroom_date_edit_text"
@@ -68,21 +78,32 @@
             android:autofillHints="Type" />
 
         <Button
-            android:id="@+id/add_mushroom_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/add_mushroom" />
-
-        <Button
             android:id="@+id/btnCapture"
-            android:text="CAPTURE"
+            android:text="@string/add_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextureView
-            android:id="@+id/textureView"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/image_preview"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="300dp"
-            android:layout_height="300dp" />
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/add_mushroom_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_mushroom"
+            android:layout_marginTop="20dp" />
 
     </LinearLayout>
 

@@ -24,4 +24,7 @@
     <string name="mushroom_detail_season_header">Season:</string>
     <string name="mushroom_detail_toxicity_header">Toxicity:</string>
     <string name="mushroom_detail_type_header">Type:</string>
+    <string name="image_preview">Image Preview:\n</string>
+    <string name="add_image">Add Image</string>
+    <string name="description">Enter Description</string>
 </resources>
