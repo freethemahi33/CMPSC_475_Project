@@ -6,7 +6,7 @@
             android:key="name"
             android:title="Name"
             android:summary="Enter your name"
-            android:defaultValue=""/>
+            android:defaultValue="" />
         <EditTextPreference
             android:key="email"
             android:title="Email"

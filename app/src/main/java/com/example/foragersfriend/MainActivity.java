@@ -2,6 +2,7 @@ package com.example.foragersfriend;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,6 +18,10 @@ import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.foragersfriend.BottomNavFragments.HomeFragment;
 import com.example.foragersfriend.BottomNavFragments.MushroomAddFragment;
@@ -24,13 +29,12 @@ import com.example.foragersfriend.BottomNavFragments.MushroomListFragment;
 import com.example.foragersfriend.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
 
     @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        com.example.foragersfriend.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new com.example.foragersfriend.BottomNavFragments.HomeFragment());
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
