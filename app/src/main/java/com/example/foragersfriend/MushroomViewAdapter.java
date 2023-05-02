@@ -1,6 +1,8 @@
 package com.example.foragersfriend;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -28,6 +30,13 @@ public class MushroomViewAdapter extends RecyclerView.Adapter<MushroomViewHolder
         holder.mushroomImage.setImageResource(mushroomRVListItems.get(position).getImage());
         holder.mushroomName.setText(mushroomRVListItems.get(position).getName());
         holder.mushroomLastSeen.setText(mushroomRVListItems.get(position).getLastSeen());
+        holder.detailsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), MushroomDetail.class);
+            intent.putExtra("mushroomName", mushroomRVListItems.get(position).getName());
+            intent.putExtra("mushroomImage", mushroomRVListItems.get(position).getImage());
+            intent.putExtra("mushroomLastSeen", mushroomRVListItems.get(position).getLastSeen());
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override

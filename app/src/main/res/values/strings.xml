@@ -5,7 +5,6 @@
     <string name="nav_home">Home</string>
     <string name="nav_add_mushroom">Add Mushroom</string>
     <string name="nav_mushroom_list">Mushroom List</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="mushroom_list_fragment">Mushroom List Fragment</string>
     <string name="mushroom_add_fragment">Mushroom Add Fragment</string>
@@ -22,4 +21,11 @@
     <string name="summer">Summer</string>
     <string name="fall">Fall</string>
     <string name="winter">Winter</string>
+    <string name="mushroom_detail_name_header">Name:</string>
+    <string name="mushroom_detail_description_header">Description:</string>
+    <string name="mushroom_detail_last_seen_header">Last Seen:</string>
+    <string name="mushroom_detail_season_header">Season:</string>
+    <string name="mushroom_detail_toxicity_header">Toxicity:</string>
+    <string name="mushroom_detail_type_header">Type:</string>
+    <string name="description">Description</string>
 </resources>
