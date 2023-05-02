@@ -36,8 +36,8 @@ public class MushroomDetail extends AppCompatActivity {
             ImageView imageView = findViewById(R.id.mushroom_detail_imageview);
             Bitmap bitmap = BitmapFactory.decodeByteArray(mushroomImage, 0, mushroomImage.length);
             imageView.setImageBitmap(bitmap);
-            imageView.setScaleY(-1);
-            imageView.setRotation(270);
+            imageView.setScaleY(1);
+            imageView.setRotation(90);
 
             TextView name = findViewById(R.id.mushroom_detail_name_actual_textview);
             name.setText(mushroomName);

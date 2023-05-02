@@ -30,8 +30,8 @@ public class MushroomViewAdapter extends RecyclerView.Adapter<MushroomViewHolder
         byte[] imageBytes = mushroomRVListItems.get(position).getImageBytes();
         Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
         holder.mushroomImage.setImageBitmap(bitmap);
-        holder.mushroomImage.setScaleY(-1);
-        holder.mushroomImage.setRotation(270);
+        holder.mushroomImage.setScaleY(1);
+        holder.mushroomImage.setRotation(90);
         holder.mushroomName.setText(mushroomRVListItems.get(position).getName());
         holder.mushroomLastSeen.setText(mushroomRVListItems.get(position).getDate());
         holder.detailsButton.setOnClickListener(v -> {

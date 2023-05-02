@@ -66,8 +66,6 @@ public class MushroomAddFragment extends Fragment {
                             ImageView imageView = requireActivity().findViewById(R.id.imageView);
                             imageView.setImageBitmap(bitmap);
                             imageView.setRotation(90);
-                            // Flip the image horizontally
-                            imageView.setScaleX(-1);
                             Toast.makeText(requireActivity(), "Successfully Image captured", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(requireActivity(), "Error capturing image", Toast.LENGTH_SHORT).show();
